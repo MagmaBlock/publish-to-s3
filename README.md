@@ -2,7 +2,7 @@
 
 [English](./README.md) | [简体中文](./README-zh-CN.md)
 
-This script is primarily used to upload the build output directory of a static site to an S3 bucket.
+Effortlessly deploy your static site to any S3 bucket with a single script.
 
 ## Best Practices
 
