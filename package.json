@@ -1,6 +1,6 @@
 {
   "name": "publish-to-s3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Upload your dist folder to S3 with a single command",
   "author": {
     "name": "MagmaBlock",
