@@ -1,0 +1,55 @@
+{
+  "name": "publish-to-s3",
+  "version": "1.0.0",
+  "description": "Upload your dist folder to S3 with a single command",
+  "author": {
+    "name": "MagmaBlock",
+    "url": "https://magma.ink"
+  },
+  "license": "MIT",
+  "keywords": [
+    "S3",
+    "upload",
+    "file-upload",
+    "cloud-storage",
+    "CLI",
+    "automation",
+    "deployment",
+    "typescript",
+    "nodejs",
+    "dotenv",
+    "serverless",
+    "CI/CD"
+  ],
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "bin": {
+    "publish-to-s3": "./dist/index.mjs"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "start": "node dist/index.mjs",
+    "prepublish": "pnpm build"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.620.0",
+    "@aws-sdk/lib-storage": "^3.620.0",
+    "consola": "^3.2.3",
+    "dotenv": "^16.4.5",
+    "mime": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "typescript": "^5.5.4",
+    "unbuild": "^2.0.0"
+  }
+}
