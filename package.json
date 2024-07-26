@@ -6,6 +6,14 @@
     "name": "MagmaBlock",
     "url": "https://magma.ink"
   },
+  "homepage": "https://github.com/MagmaBlock/publish-to-s3",
+  "bugs": {
+    "url": "https://github.com/MagmaBlock/publish-to-s3/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MagmaBlock/publish-to-s3.git"
+  },
   "license": "MIT",
   "keywords": [
     "S3",
