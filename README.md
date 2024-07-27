@@ -49,9 +49,9 @@ Ensure you have Node.js and npm installed, then run the following in the directo
 
 ```bash
 # Using npm
-npx publish-to-s3
+npx publish-to-s3@latest
 # Or using pnpm
-pnpx publish-to-s3
+pnpx publish-to-s3@latest
 ```
 
 npm will automatically download and run this script. Observe the console output:
@@ -83,5 +83,5 @@ You should configure environment variables for the project, usually available in
 
 ```bash
 # You can configure a build command like this:
-pnpm run build && pnpx publish-to-s3
+pnpm run build && pnpx publish-to-s3@latest
 ```

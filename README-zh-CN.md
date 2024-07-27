@@ -49,9 +49,9 @@ S3_DESTINATION_PATH=
 
 ```bash
 # npm
-npx publish-to-s3
+npx publish-to-s3@latest
 # 或者使用 pnpm
-pnpx publish-to-s3
+pnpx publish-to-s3@latest
 ```
 
 npm 将自动下载本脚本并运行。观察控制台输出：
@@ -83,5 +83,5 @@ npm 将自动下载本脚本并运行。观察控制台输出：
 
 ```bash
 # 你可以配置类似这种构建命令：
-pnpm run build && pnpx publish-to-s3
+pnpm run build && pnpx publish-to-s3@latest
 ```
