@@ -14,7 +14,7 @@ const main = async () => {
   consola.info(
     `All files in "${path.join(
       config.localFolderPath
-    )}" will be uploaded to "${path.join(config.s3DestinationPath)}"`
+    )}" will be uploaded to "${path.posix.join(config.s3DestinationPath)}"`
   );
 
   const filesToUpload = collectFiles(config.localFolderPath);
@@ -23,7 +23,7 @@ const main = async () => {
   const uploadTasks = filesToUpload.map((file) =>
     uploadFileToS3({
       bucketName: config.s3BucketName!,
-      key: path.join(config.s3DestinationPath, file.key),
+      key: path.posix.join(config.s3DestinationPath, file.key),
       filePath: file.filePath,
     })
   );
