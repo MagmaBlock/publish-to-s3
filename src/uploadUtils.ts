@@ -5,7 +5,6 @@ import mime from "mime";
 import { s3Client } from "./s3Client";
 import { calculateMD5 } from "./fileUtils";
 import consola from "consola";
-import path from "node:path";
 
 export const isFileInS3 = async (
   bucketName: string,
@@ -15,7 +14,7 @@ export const isFileInS3 = async (
   try {
     const headParams = {
       Bucket: bucketName,
-      Key: path.posix.join(key),
+      Key: key.replace(/\\/g, "/"),
     };
 
     const headData = await s3Client.send(new HeadObjectCommand(headParams));
@@ -41,7 +40,7 @@ export const uploadFileToS3 = async ({
   filePath: string;
   maxRetries?: number;
 }): Promise<void> => {
-  key = path.posix.join(key);
+  key = key.replace(/\\/g, "/");
   if (await isFileInS3(bucketName, key, filePath)) {
     consola.info(
       `File ${key} already exists in ${bucketName} and is identical. Skipping upload`

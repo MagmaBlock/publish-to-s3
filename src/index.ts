@@ -14,19 +14,21 @@ const main = async () => {
   consola.info(
     `All files in "${path.join(
       config.localFolderPath
-    )}" will be uploaded to "${path.posix.join(config.s3DestinationPath)}"`
+    )}" will be uploaded to "${path
+      .join(config.s3BucketName!, config.s3DestinationPath)
+      .replace(/\\/g, "/")}"`
   );
 
   const filesToUpload = collectFiles(config.localFolderPath);
   consola.info(`Found ${filesToUpload.length} files to upload`);
 
-  const uploadTasks = filesToUpload.map((file) =>
+  const uploadTasks = filesToUpload.map((file) => {
     uploadFileToS3({
       bucketName: config.s3BucketName!,
-      key: path.posix.join(config.s3DestinationPath, file.key),
+      key: path.join(config.s3DestinationPath, file.key),
       filePath: file.filePath,
-    })
-  );
+    });
+  });
 
   await Promise.all(uploadTasks);
 
