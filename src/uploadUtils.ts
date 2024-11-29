@@ -5,7 +5,7 @@
 
 import { HeadObjectCommand } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
-import fs from "fs";
+import fs from "node:fs";
 import mime from "mime";
 import { s3Client } from "./s3Client";
 import { calculateMD5 } from "./fileUtils";
@@ -14,7 +14,7 @@ import consola from "consola";
 /**
  * Check if a file already exists in the S3 bucket
  * Compares MD5 hash of local file with S3 ETag to determine if files are identical
- * 
+ *
  * @param bucketName - Name of the S3 bucket
  * @param key - The key (path) of the file in S3
  * @param localFilePath - Path to the local file
@@ -50,7 +50,7 @@ export const isFileInS3 = async (
 /**
  * Upload a file to S3 bucket
  * Supports automatic retries and content type detection
- * 
+ *
  * @param options - Upload options
  * @param options.bucketName - Name of the S3 bucket
  * @param options.key - The key (path) of the file in S3
