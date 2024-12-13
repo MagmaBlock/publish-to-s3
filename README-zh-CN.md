@@ -30,7 +30,7 @@
 
 #### 环境变量列表
 
-```
+```yaml
 # S3 相关配置。不同的云服务商各有不同，请参考相应云服务商的文档。
 S3_REGION=oss-cn-shanghai
 S3_ACCESS_KEY_ID=YourAccessKey
@@ -39,8 +39,10 @@ S3_ENDPOINT=https://endpoint.example.com
 S3_BUCKET_NAME=target-bucket
 # 此项填写你的静态站点构建成品目录，一般都是 dist 不用修改。
 LOCAL_FOLDER_PATH=./dist
-# 此项填写构建成品目录中的文件应该被上传到 S3 的哪个目录下。默认为根目录。
+# 可选：此项填写构建成品目录中的文件应该被上传到 S3 的哪个目录下。默认为根目录。
 S3_DESTINATION_PATH=
+# 可选：设置并发上传的数量。默认为 16。
+S3_UPLOAD_CONCURRENCY_LIMIT=16
 ```
 
 ### 第二步：手动运行脚本

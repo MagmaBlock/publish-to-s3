@@ -30,7 +30,7 @@ Note: If your source code is public, make sure to ignore the `.env` file in your
 
 #### List of Environment Variables
 
-```
+```yaml
 # S3 configuration. Different cloud providers have different requirements, please refer to the respective documentation.
 S3_REGION=oss-cn-shanghai
 S3_ACCESS_KEY_ID=YourAccessKey
@@ -39,8 +39,10 @@ S3_ENDPOINT=https://endpoint.example.com
 S3_BUCKET_NAME=target-bucket
 # Specify the build output directory of your static site, usually 'dist' doesn't need modification.
 LOCAL_FOLDER_PATH=./dist
-# Specify the directory in S3 where the build output should be uploaded. Defaults to the root directory.
+# Optional: Specify the directory in S3 where the build output should be uploaded. Defaults to the root directory.
 S3_DESTINATION_PATH=
+# Optional: Specify the number of concurrent uploads. Defaults to 16.
+S3_UPLOAD_CONCURRENCY_LIMIT=16
 ```
 
 ### Step 2: Manually Run the Script
