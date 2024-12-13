@@ -12,6 +12,7 @@ export const config = {
   localFolderPath:
     process.env.LOCAL_FOLDER_PATH || path.join(process.cwd(), "dist"),
   s3DestinationPath: process.env.S3_DESTINATION_PATH || "",
+  s3UploadConcurrencyLimit: parseInt(process.env.S3_UPLOAD_CONCURRENCY_LIMIT || "16"),
 };
 
 if (

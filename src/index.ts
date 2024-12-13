@@ -5,11 +5,12 @@
  * Implements functionality to upload local files to a specified S3 bucket
  */
 
+import { consola } from "consola";
 import path from "node:path";
+import pLimit from "p-limit";
 import { config } from "./config";
 import { collectFiles } from "./fileUtils";
 import { uploadFileToS3 } from "./uploadUtils";
-import { consola } from "consola";
 
 /**
  * Main function: Handles the file upload process
@@ -36,16 +37,20 @@ const main = async () => {
   const filesToUpload = collectFiles(config.localFolderPath);
   consola.info(`Found ${filesToUpload.length} files to upload`);
 
+  const limit = pLimit(config.s3UploadConcurrencyLimit);
+
   // Create array of upload tasks
   const uploadTasks = filesToUpload.map((file) =>
-    uploadFileToS3({
-      bucketName: config.s3BucketName!,
-      key: path.join(config.s3DestinationPath, file.key),
-      filePath: file.filePath,
-    })
+    limit(() =>
+      uploadFileToS3({
+        bucketName: config.s3BucketName!,
+        key: path.join(config.s3DestinationPath, file.key),
+        filePath: file.filePath,
+      })
+    )
   );
 
-  // Execute all upload tasks in parallel
+  // Execute all upload tasks in parallel under the specified concurrency conditions
   await Promise.all(uploadTasks);
 
   // Display completion information
